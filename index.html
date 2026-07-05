@@ -1920,8 +1920,16 @@ function saveReflection(){
 
 /* ---------- 11. INIT / WIRING -------------------------------------------- */
 async function startExperience(){
+  console.log("========== START ==========");
+  console.log("Element:", $('#intentText'));
+  console.log("Value:", $('#intentText').value);
+
   state.intentText = $('#intentText').value.trim();
+
+  console.log("Trimmed:", state.intentText);
+
   const frame = await understandIntent(state.intentText);
+
   state.baseFrame = frame;
   initFiltersFromFrame(frame);
   state.frame = frameFromFilters();
