@@ -105,6 +105,8 @@ Return EXACTLY this schema:
 
         );
 
+        const data = await response.json();
+
         if (!response.ok) {
 
             console.error("OpenRouter Error:", data);
@@ -112,8 +114,6 @@ Return EXACTLY this schema:
             return res.status(response.status).json(data);
 
         }
-
-        const data = await response.json();
 
         const frame = JSON.parse(
             data.choices[0].message.content
@@ -125,16 +125,14 @@ Return EXACTLY this schema:
 
     catch (err) {
 
-        return res.status(500).json({
-            error: "Unable to interpret intent."
-    catch (err) {
-        console.error("SERVER ERROR:", err);
-        return res.status(500).json({
-            message: err.message,
-            stack: err.stack
-        });
+         console.error("SERVER ERROR:", err);
+
+         return res.status(500).json({
+             message: err.message,
+             stack: err.stack
+         });
 
     }
-        
+           
 
 }
