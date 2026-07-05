@@ -115,9 +115,12 @@ Return EXACTLY this schema:
 
         }
 
-        const frame = JSON.parse(
-            data.choices[0].message.content
-        );
+        const content = data.choices[0].message.content;
+        
+        const start = content.indexOf("{");
+        const end = content.lastIndexOf("}");
+
+        const frame = JSON.parse(content.substring(start, end + 1));
 
         return res.status(200).json(frame);
 
