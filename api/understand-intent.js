@@ -120,7 +120,10 @@ Return EXACTLY this schema:
         const start = content.indexOf("{");
         const end = content.lastIndexOf("}");
 
-        const frame = JSON.parse(content.substring(start, end + 1));
+        const extracted = content.substring(start, end + 1);
+        console.log("EXTRACTED:", extracted);
+
+        const frame = JSON.parse(extracted);
 
         return res.status(200).json(frame);
 
