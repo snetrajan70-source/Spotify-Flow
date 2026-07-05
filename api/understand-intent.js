@@ -127,8 +127,14 @@ Return EXACTLY this schema:
 
         return res.status(500).json({
             error: "Unable to interpret intent."
+    catch (err) {
+        console.error("SERVER ERROR:", err);
+        return res.status(500).json({
+            message: err.message,
+            stack: err.stack
         });
 
     }
+        
 
 }
