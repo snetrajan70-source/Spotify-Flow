@@ -31,10 +31,6 @@ export default async function handler(req, res) {
 
                     model: process.env.OPENROUTER_MODEL,
 
-                    response_format: {
-                        type: "json_object"
-                    },
-
                     messages: [
 
                         {
@@ -111,7 +107,9 @@ Return EXACTLY this schema:
 
         if (!response.ok) {
 
-            throw new Error("OpenRouter request failed");
+            console.error("OpenRouter Error:", data);
+
+            return res.status(response.status).json(data);
 
         }
 
